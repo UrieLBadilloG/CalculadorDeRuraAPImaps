@@ -141,58 +141,9 @@ function App() {
   }
 
 
-// async function calculateRoute() {
-  //   var j = 0;
-  //   if (locationsRef.current.length < 2) {
-  //     return
-  //   }
-  //   // eslint-disable-next-line no-undef
-  //   const directionsService = new google.maps.DirectionsService()
-  //   // eslint-disable-next-line no-undef
-
-
-  //   let results = [];
-  //   while (j < locationsJSON.current.locations.length) {
-
-  //     // eslint-disable-next-line no-undef
-  //     let waypoints = locationsJSON.current.locations[j].slice(0, -1).map(location => ({ location }));
-  //     let origin = locationsJSON.current.origin[0]
-  //     let destination = locationsJSON.current.locations[j][locationsJSON.current.locations[j].length - 1]
-  //     results[j] = await directionsService.route({
-  //       origin,
-  //       destination,
-  //       waypoints,
-  //       // eslint-disable-next-line no-undef
-  //       travelMode: google.maps.TravelMode.DRIVING,
-
-  //     })
-  //     // eslint-disable-next-line no-undef
-  //     const flightPath = new google.maps.Polyline({
-  //       geodesic: true,
-  //       strokeColor: "red",
-  //       strokeOpacity: 1.0,
-  //       strokeWeight: 2,
-  //     });
-  //     results[j].polyline = flightPath;
-  //     setDirectionsResponse(prevState => {
-  //       const newState = [...prevState];
-  //       newState[j] = results[j];
-  //       return newState;
-  //     });
-
-  //     setDistance(results[0].routes[0].legs.reduce((acc, leg) => acc + leg.distance.value, 0) / 1000)
-  //     setDuration(results[0].routes[0].legs.reduce((acc, leg) => acc + leg.duration.value, 0) / 60)
-  //     j++
-  //   }
-  // }
-
-  // console.log(sampleJSON.current.ruta[1].route[0].slice(0, -1))
-  // console.log(sampleJSON.current.ruta[0].origin)
-  console.log(sampleJSON.current.ruta[0].route[0][sampleJSON.current.ruta[0].route[0].length - 1])
-
-  async function calculateRoute() {
+async function calculateRoute() {
     var j = 0;
-    if (sampleJSON.current.ruta.length < 2) {
+    if (locationsRef.current.length < 2) {
       return
     }
     // eslint-disable-next-line no-undef
@@ -201,12 +152,12 @@ function App() {
 
 
     let results = [];
-    while (j < sampleJSON.current.ruta.length) {
+    while (j < locationsJSON.current.locations.length) {
 
       // eslint-disable-next-line no-undef
-      let waypoints = sampleJSON.current.ruta[j].route[0].slice(0, -1).map(location => ({ location }));
-      let origin = sampleJSON.current.ruta[j].origin
-      let destination = sampleJSON.current.ruta[j].route[0][sampleJSON.current.ruta[j].route[0].length - 1]
+      let waypoints = locationsJSON.current.locations[j].slice(0, -1).map(location => ({ location }));
+      let origin = locationsJSON.current.origin[0]
+      let destination = locationsJSON.current.locations[j][locationsJSON.current.locations[j].length - 1]
       results[j] = await directionsService.route({
         origin,
         destination,
@@ -234,6 +185,55 @@ function App() {
       j++
     }
   }
+
+  console.log(sampleJSON.current.ruta[1].route[0].slice(0, -1))
+  console.log(sampleJSON.current.ruta[0].origin)
+  console.log(sampleJSON.current.ruta[0].route[0][sampleJSON.current.ruta[0].route[0].length - 1])
+
+  // async function calculateRoute() {
+  //   var j = 0;
+  //   if (sampleJSON.current.ruta.length < 2) {
+  //     return
+  //   }
+  //   // eslint-disable-next-line no-undef
+  //   const directionsService = new google.maps.DirectionsService()
+  //   // eslint-disable-next-line no-undef
+
+
+  //   let results = [];
+  //   while (j < sampleJSON.current.ruta.length) {
+
+  //     // eslint-disable-next-line no-undef
+  //     let waypoints = sampleJSON.current.ruta[j].route[0].slice(0, -1).map(location => ({ location }));
+  //     let origin = sampleJSON.current.ruta[j].origin
+  //     let destination = sampleJSON.current.ruta[j].route[0][sampleJSON.current.ruta[j].route[0].length - 1]
+  //     results[j] = await directionsService.route({
+  //       origin,
+  //       destination,
+  //       waypoints,
+  //       // eslint-disable-next-line no-undef
+  //       travelMode: google.maps.TravelMode.DRIVING,
+
+  //     })
+  //     // eslint-disable-next-line no-undef
+  //     const flightPath = new google.maps.Polyline({
+  //       geodesic: true,
+  //       strokeColor: "red",
+  //       strokeOpacity: 1.0,
+  //       strokeWeight: 2,
+  //     });
+  //     results[j].polyline = flightPath;
+  //     setDirectionsResponse(prevState => {
+  //       const newState = [...prevState];
+  //       newState[j] = results[j];
+  //       return newState;
+  //     });
+
+  //     setDistance(results[0].routes[0].legs.reduce((acc, leg) => acc + leg.distance.value, 0) / 1000)
+  //     setDuration(results[0].routes[0].legs.reduce((acc, leg) => acc + leg.duration.value, 0) / 60)
+  //     j++
+  //   }
+  // }
 
 
   // eslint-disable-next-line no-undef
